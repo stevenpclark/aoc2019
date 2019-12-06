@@ -1,11 +1,12 @@
 def run_program(x):
     i = 0
     while True:
-        print('i:', i)
+        #print(x)
+        #print('i:', i)
         cmd = str(x[i]).rjust(5, '0')
         op = int(cmd[-2:])
-        print('cmd:', cmd)
-        print('op:', op)
+        #print('cmd:', cmd)
+        #print('op:', op)
 
         if op == 99:
             break
@@ -19,7 +20,7 @@ def run_program(x):
             continue
 
         modes = [int(c) for c in reversed(cmd[1:-2])]
-        print('modes:', modes)
+        #print('modes:', modes)
         operands = []
         for j, mode in enumerate(modes):
             if mode == 0: #position mode
@@ -28,7 +29,7 @@ def run_program(x):
                 operands.append(x[i+j+1])
             else:
                 raise Exception('bad')
-        print('operands:', operands)
+        #print('operands:', operands)
 
         if op == 1:
             x[x[i+3]] = operands[0] + operands[1]
@@ -38,12 +39,12 @@ def run_program(x):
             i += 4
         elif op == 5: #jump-if-true
             if operands[0]:
-                i += operands[1]
+                i = operands[1]
             else:
                 i += 3
         elif op == 6: #jump-if-false
             if not operands[0]:
-                i += operands[1]
+                i = operands[1]
             else:
                 i += 3
         elif op == 7: #less-than
@@ -67,13 +68,14 @@ def main():
     #s = '3,9,7,9,10,9,4,9,99,-1,8'
     #s = '3,3,1108,-1,8,3,4,3,99'
     #s = '3,3,1107,-1,8,3,4,3,99'
-    s = '3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9'
+    #s = '3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9'
     #s = '3,3,1105,-1,9,1101,0,0,12,4,12,99,1'
+    #s = '3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99'
     x_orig = [int(s2) for s2 in s.split(',')]
 
     x = x_orig[:]
     run_program(x)
-    print(x)
+    #print(x)
 
 if __name__ == '__main__':
     main()
