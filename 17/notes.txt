@@ -1,0 +1,11 @@
+R10 R10 R6 R4    R10 R10 L4    R10 R10 R6 R4    R4 L4 L10 L10   R10 R10 R6 R4    R10 R10 L4    R4 L4 L10 L10    R10 R10 L4    R4 L4 L10 L10    R10 R10 L4
+A                B             A                C               A                B             C                B             C                B
+
+R10 R10 R6 R4
+R10 R10 L4
+R4 L4 L10 L10
+
+A,B,A,C,A,B,C,B,C,B
+R,10,R,10,R,6,R,4
+R,10,R,10,L,4
+R,4,L,4,L,10,L,10

@@ -2,7 +2,7 @@ import numpy as np
 
 
 NUM_OPERAND_MAP = {1:3, 2:3, 3:1, 4:1, 5:2, 6:2, 7:3, 8:3, 9:1}
-def run_program(x):
+def run_program(x, inputs=None):
     x = x[:]
     i = 0
     rel_base = 0
@@ -36,10 +36,15 @@ def run_program(x):
             x[addrs[2]] = x[addrs[0]] * x[addrs[1]]
             i += 4
         elif op == 3:
+            inp = inputs.pop(0)
+            print(chr(inp), end='')
             x[addrs[0]] = inp
             i += 2
         elif op == 4:
-            output.append(chr(x[addrs[0]]))
+            print(x[addrs[0]])
+            outp = chr(x[addrs[0]])
+            #print(outp, end='')
+            output.append(outp)
             i += 2
         elif op == 5: #jump-if-true
             if x[addrs[0]]:
@@ -86,6 +91,21 @@ def main():
             if m[r,c] == m[r-1,c] == m[r+1,c] == m[r,c-1] == m[r,c+1] == '#':
                 v += r*c
     print(v)
+
+
+
+    x[0] = 2
+    inputs = list()
+    inputs.extend(['A,B,A,C,A,B,C,B,C,B'])
+    inputs.extend(['R,10,R,10,R,6,R,4'])
+    inputs.extend(['R,10,R,10,L,4'])
+    inputs.extend(['R,4,L,4,L,10,L,10'])
+    inputs.extend(['n\n'])
+    inputs = '\n'.join(inputs)
+    print(inputs)
+    inputs = [ord(c) for c in inputs]
+    print(inputs)
+    s = run_program(x, inputs)
 
     
 
